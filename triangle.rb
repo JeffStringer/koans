@@ -15,13 +15,19 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
-  
-  if ( a == b ) && ( b == c ) 
-    return :equilateral
-  elsif ( a == b ) || ( b == c) || ( a == c )
-    return :isosceles
-  else 
-    return :scalene
+  begin
+    sides = [a, b, c]
+    sum = sides.inject{|sum,x| sum + x }
+    negative = sides.any? { |i| i < 0 }
+    valid = ( a + b > c ) && ( b + c > a ) && ( a + c > b )
+    raise TriangleError unless ( sum > 0 ) && ( negative == false ) && ( valid == true )
+    if ( a == b ) && ( b == c ) 
+      return :equilateral
+    elsif ( a == b ) || ( b == c) || ( a == c )
+      return :isosceles
+    else 
+      return :scalene
+    end
   end
 end
 
