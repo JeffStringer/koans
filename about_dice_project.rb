@@ -47,7 +47,6 @@ class AboutDiceProject < Neo::Koan
 
     dice.roll(5)
     second_time = dice.values
-    binding.pry
 
     assert_not_equal first_time, second_time,
       "Two rolls should not be equal"
